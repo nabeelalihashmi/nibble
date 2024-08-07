@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NibbleJS</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main {
+            padding: 1rem;
+            border: 1px solid #FFBF00;
+            border-radius: 1rem;
+        }
+    </style>
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/picocss/2.0.6/pico.amber.min.css' integrity='sha512-kvYLueAc7RD0XOfxhjiaUKbXBmh5JTZdyJo/12oY/zpT0l6o82H2Ap5f27CrAa16VgvXj02Rsb0Prwtq7oYOSw==' crossorigin='anonymous'/>
+</head>
+
+<body>
+
+    <!-- Signals Only without Nibble DOM -->
+    <div class="main border">
+        <div>
+            <h1>NibbleJS Signal</h1>
+        </div>
+        <div>
+            <input type="number" id="number">
+        </div>
+        <p>
+            Value: <span id="value"></span> <br>
+            Computed: <span id="computed"></span>
+        </p>
+        <p>
+            <button id="button">Reset</button>
+        </p>
+        <p>
+            <small>
+                Created by Nabeel Ali - <a href="https://linkedin.com/nabeelalihashmi">linkedin.com/nabeelalihashmi</a>
+            </small>
+        </p>
+    </div>
+
+    <!-- Nibble DOM -->
+
+    <script src="./js/v1/signal.js"></script>
+    <script src="./js/v1/dom.js"></script>
+
+    <script>
+        // Complete signal api has only following members 
+        // signal, compute, effect, watch
+
+        let count = signal(0);
+        let computedValue = compute(() => count.value * 10);
+
+        let input = document.querySelector("#number");
+        let valueDiv = document.querySelector("#value");
+        let computedDiv = document.querySelector("#computed");
+        let resetButton = document.querySelector("#button");
+
+        input.addEventListener('input', function (event) {
+            count.value = event.target.value
+        })
+
+        resetButton.addEventListener('click', function () {
+            count.value = 0;
+        })
+
+        effect(() => {
+            valueDiv.innerText = count.value;
+        })
+
+        effect(() => {
+            input.value = count.value;
+        })
+
+
+        effect(() => {
+            computedDiv.innerText = computedValue.value;
+        })
+
+        watch(count, (newValue, oldValue) => {
+            console.log(`count changed from ${oldValue} to ${newValue}`)
+            if (newValue > 50) {
+                alert("Above 50 not allowed");
+                count.value = 50;
+            }
+        })
+    </script>
+</body>
+
+</html>

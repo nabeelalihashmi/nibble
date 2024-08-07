@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NibbleJS</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .main {
+            padding: 1rem;
+            border: 1px solid #FFBF00;
+            border-radius: 1rem;
+        }
+
+        .danger {
+            border: 2px solid #ff0000 !important;
+        }
+    </style>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/picocss/2.0.6/pico.amber.min.css'
+        integrity='sha512-kvYLueAc7RD0XOfxhjiaUKbXBmh5JTZdyJo/12oY/zpT0l6o82H2Ap5f27CrAa16VgvXj02Rsb0Prwtq7oYOSw=='
+        crossorigin='anonymous' />
+</head>
+
+<body>
+
+    <!-- Signals Only with Nibble DOM -->
+    <!-- bind:value|text|html|property, class:, this, if -->
+
+    <div class="main border" class:danger="isDanger">
+        <div>
+            <h1>NibbleJS DOM</h1>
+        </div>
+        <div>
+            <input type="number" bind:value="count">
+        </div>
+        <p>
+            Value: <span bind:text="count"></span> <br>
+            Computed: <span bind:text="computedValue"></span>
+        </p>
+        <p>
+            <button this="button">Reset</button>
+        </p>
+       
+        <p>
+        <fieldset>
+            <legend>Fruits</legend>
+            <div>
+                <ul bind:html="fruits" class="list-group"></ul>
+            </div>
+            <div>
+                <input type="checkbox" id="apple" name="fruit[]" value="apple" bind:group="selectedFruits" />
+                <label for="apple">Apple</label>
+            </div>
+            <div>
+                <input type="checkbox" id="banana" name="fruit[]" value="banana" bind:group="selectedFruits" />
+                <label for="banana">Banana</label>
+            </div>
+            <div>
+                <input type="checkbox" id="mango" name="fruit[]" value="mango" bind:group="selectedFruits" />
+                <label for="mango">Mango</label>
+            </div>
+        </fieldset>
+        </p>
+
+        <p>
+        <fieldset>
+            <legend>Agree</legend>
+            <div if="agreement" class:danger="isDanger">
+                <h3>Conditional Agree</h3>
+            </div>
+    
+            <div class="form-check">
+                <input type="radio" id="agree-no" name="agree" value="no" bind:group="agree" />
+                <label for="agree-no">No</label>
+            </div>
+            <div>
+                <input type="radio" id="agree-yes" name="agree" value="yes" bind:group="agree"
+                 />
+                <label for="agree-yes">Yes</label>
+            </div>
+        </fieldset>
+        </p>
+
+        <p>
+            <small>
+                Created by Nabeel Ali - <a href="https://linkedin.com/nabeelalihashmi">linkedin.com/nabeelalihashmi</a>
+            </small>
+        </p>
+    </div>
+
+    <!-- Nibble DOM -->
+
+    <script src="./js/v1/signal.js"></script>
+    <script src="./js/v1/dom.js"></script>
+
+    <script>
+        // Complete Nibble DOM api has only following directives 
+
+        // with dom, signal must use var
+        var count = signal(0);
+        var computedValue = compute(() => count.value * 10);
+
+        var selectedFruits = signal(["mango"]);
+        var fruits = compute(() =>
+            selectedFruits.value.map((f) => `<li class="list-group-item">${f}</li>`).join(""),
+        );
+
+        var agree = signal("yes");
+        var agreement = compute(() =>
+            agree.value == "yes" ? true : false,
+        );
+
+        var isDanger = compute(() => count.value > 30 ? true : false);
+        var showItem = compute(() => count.value > 30 ? true : false);
+
+        document.addEventListener('DOMContentLoaded', app);
+        function app() {
+
+            console.log('loaded')
+            button.addEventListener('click', function () {
+                count.value = 0;
+            })
+
+            // make sure it runs after DOMContentLoaded
+            watch(count, (oldValue, newValue) => {
+                console.log(`count changed from ${oldValue} to ${newValue}`)
+                if (newValue > 50) {
+                    alert("Above 50 not allowed");
+                    count.value = 50;
+                }
+            })
+
+        }
+    </script>
+</body>
+
+</html>

@@ -67,8 +67,8 @@ Download the files and link using script
 Via CDN links, making it easy to include in your project:
 
 ```
-<script src="https://cdn.jsdelivr.net/gh/nabeelalihashmi/nibble@latest/js/v1/signal.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/nabeelalihashmi/nibble@latest/js/v1/dom.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/nabeelalihashmi/nibble@main/js/v1/signal.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/nabeelalihashmi/nibble@main/js/v1/dom.js"></script>
 ```
 
 ## Signal API Documentation

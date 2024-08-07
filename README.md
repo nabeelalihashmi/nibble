@@ -271,7 +271,7 @@ By default, Nibble DOM selects all nodes while applying. To optimize it, set `wi
         </p>
         <p>
             <small>
-                Created by Nabeel Ali - <a href="https://linkedin.com/nabeelalihashmi">linkedin.com/nabeelalihashmi</a>
+                Created by Nabeel Ali - <a href="https://linkedin.com/in/nabeelalihashmi">linkedin.com/in/nabeelalihashmi</a>
             </small>
         </p>
     </div>
@@ -423,7 +423,7 @@ By default, Nibble DOM selects all nodes while applying. To optimize it, set `wi
 
         <p>
             <small>
-                Created by Nabeel Ali - <a href="https://linkedin.com/nabeelalihashmi">linkedin.com/nabeelalihashmi</a>
+                Created by Nabeel Ali - <a href="https://linkedin.com/in/nabeelalihashmi">linkedin.com/in/nabeelalihashmi</a>
             </small>
         </p>
     </div>

@@ -3,7 +3,9 @@
 ![nibble.js Logo](nibble.png)
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue)](https://linkedin.com/in/nabeelalihashmi)
-[![Website](https://img.shields.io/badge/Website-aliveforms.com-green)](https://aliveforms.com)
+[![Website](https://img.shields.io/badge/Website-aliveforms.com-green)](https://nabeelhashmi.com)
+[![Website](https://img.shields.io/badge/Website-aliveforms.com-green)](https://mockuptown.com)
+
 
 NibbleJS is a minimal lightweight and efficient JavaScript framework for reactive programming and data binding. It provides a minimalistic approach to manage reactivity with signals in your web applications. It is written in 150 lines of code only. It's API is extremly small, so learning curve is very small. Signal API is composed of 4 functions only: `signal`, `compute`, `watch`, `effect` and Nibble DOM has only following directives `bind:value|text|html|group|any attribute`, `class:`, `this`, `if` and `nibble`if you want to activate nibble dom only on selected nodes,
 
